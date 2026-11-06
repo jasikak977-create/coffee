@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mevi Smart Cafe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--ink: #203b33;
+		--green: #21483d;
+		--green-dark: #18382f;
+		--sage: #e7ece2;
+		--cream: #f7f5ef;
+		--paper: #fffefa;
+		--coral: #c76146;
+		--muted: #68736a;
+		--line: #e7e4da;
+	}
+
+	* { box-sizing: border-box; }
+	html { scroll-behavior: smooth; }
+	body {
+		margin: 0 !important;
+		background: var(--cream) !important;
+		color: var(--ink) !important;
+		font-family: 'DM Sans', sans-serif !important;
+		line-height: 1.65;
+	}
+
+	h1, h2, h3 { font-family: 'Fraunces', Georgia, serif; line-height: 1.2; }
+	h2 { font-size: 34px; margin: 0 0 24px; color: var(--green) !important; }
+	p { color: inherit; }
+	a { transition: color .2s ease, background-color .2s ease, transform .2s ease; }
+
+	header {
+		background: var(--green-dark) !important;
+		padding: 22px 24px 18px !important;
+		text-align: center;
+	}
+	header h1 {
+		margin: 0;
+		color: #fffaf0;
+		font-size: 34px !important;
+		letter-spacing: 2px !important;
+	}
+	header > p { margin: 4px 0 12px; color: #d3ddc8 !important; }
+	nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px; margin-top: 12px !important; }
+	nav a {
+		margin: 0 !important;
+		padding: 7px 12px;
+		border-radius: 20px;
+		color: #fffaf0 !important;
+		font-size: 14px;
+		text-decoration: none;
+	}
+	nav a:hover { background: rgba(255,255,255,.12); }
+
+	#home {
+		display: grid;
+		grid-template-columns: minmax(0, 1.15fr) minmax(300px, .85fr);
+		align-items: center;
+		gap: clamp(32px, 6vw, 82px);
+		max-width: 1280px;
+		margin: 0 auto;
+		padding: 58px 40px 72px !important;
+		text-align: left !important;
+	}
+	#home img {
+		display: block;
+		width: 100% !important;
+		height: 500px !important;
+		margin: 0;
+		border-radius: 5px !important;
+		object-position: center 54%;
+		filter: saturate(.86);
+		animation: hero-enter .7s ease-out both;
+	}
+	.hero-copy { animation: hero-enter .7s .12s ease-out both; }
+	.hero-kicker {
+		margin: 0 0 18px !important;
+		color: var(--coral) !important;
+		font-size: 12px;
+		font-weight: 700;
+		letter-spacing: 1px;
+	}
+	#home h2 { margin: 0 0 18px; font-size: 46px; }
+	#home .hero-copy > p:not(.hero-kicker) { max-width: 390px; margin: 8px 0; color: var(--muted); }
+	#home .hero-copy > p:last-of-type { margin-bottom: 24px; }
+	#home > a {
+		display: inline-block;
+		margin-top: 8px;
+		background: var(--coral) !important;
+		padding: 12px 22px !important;
+		border-radius: 3px !important;
+		color: white !important;
+		font-weight: 700;
+		text-decoration: none;
+	}
+	#home > a:hover { background: #a94c35 !important; transform: translateY(-2px); }
+	@keyframes hero-enter {
+		from { opacity: 0; transform: translateY(14px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	#about {
+		max-width: 1180px;
+		margin: 0 auto !important;
+		padding: 42px 48px !important;
+		border-radius: 4px !important;
+		border-left: 4px solid var(--coral);
+		background: var(--paper) !important;
+	}
+	#about h2 { margin-bottom: 30px; }
+	#about h3 { margin: 20px 0 6px; color: var(--coral); font-size: 21px; }
+	#about p, #about li { color: var(--muted); }
+	#about ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 32px; padding-left: 20px; }
+
+	#offers { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+	#offers h2 { grid-column: 1 / -1; margin: 0; }
+	#offers > div {
+		margin: 0 !important;
+		padding: 24px !important;
+		border: 1px solid var(--line);
+		border-radius: 4px !important;
+		background: var(--paper) !important;
+		color: var(--muted);
+		text-align: left;
+	}
+	#offers h3 { margin: 0 0 8px; color: var(--coral) !important; font-size: 22px; }
+
+	#menu { max-width: 1230px; margin: 0 auto; }
+	#menu > h2 { margin-bottom: 30px; }
+	#menu > div { gap: 18px !important; }
+	#menu > div > div {
+		flex: 1 1 260px;
+		max-width: 360px;
+		padding: 12px !important;
+		border: 1px solid var(--line);
+		border-radius: 4px !important;
+		background: var(--paper) !important;
+		box-shadow: 0 8px 22px rgba(32,59,51,.06) !important;
+		text-align: left !important;
+		transition: transform .2s ease, box-shadow .2s ease;
+	}
+	#menu > div > div:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(32,59,51,.12) !important; }
+	#menu img { height: 190px !important; border-radius: 2px !important; }
+	#menu h3 { margin: 16px 5px 5px; color: var(--green) !important; font-size: 20px; }
+	#menu p { margin: 0 5px 8px; color: var(--muted); }
+
+	body > section:not(#home):not(#about):not(#offers):not(#menu):not(#billing):not(#contact) { max-width: 1180px; margin: 0 auto; }
+	table {
+		overflow: hidden;
+		border: 1px solid var(--line) !important;
+		border-radius: 4px;
+		color: var(--ink);
+	}
+	th { padding: 13px 12px !important; background: var(--green) !important; color: white !important; font-weight: 600; }
+	td { padding: 12px !important; border-color: var(--line) !important; }
+	tr:nth-child(even) td { background: #f4f3ec; }
+
+	#billing {
+		max-width: 1180px;
+		margin: 20px auto !important;
+		padding: 38px 42px !important;
+		border-radius: 4px !important;
+		background: var(--sage) !important;
+	}
+	#billing h2 { font-size: 30px; }
+	#billing h3 { color: var(--muted); }
+	#billing h2:last-of-type { color: var(--coral) !important; }
+	#billing > p:last-child { padding-top: 20px; color: var(--green); font-weight: 600; }
+
+	form {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 6px 20px;
+		max-width: 800px;
+		margin: 0 auto;
+		padding: 30px !important;
+		border: 1px solid var(--line);
+		border-radius: 4px !important;
+		background: var(--paper) !important;
+	}
+	form label { align-self: end; color: var(--green); font-size: 14px; font-weight: 700; }
+	form input:not([type=radio]):not([type=checkbox]), form select, form textarea {
+		width: 100% !important;
+		min-height: 44px;
+		padding: 10px 12px !important;
+		border: 1px solid #d6d8cf;
+		border-radius: 3px;
+		background: #fffefa;
+		color: var(--ink);
+		font: inherit;
+	}
+	form textarea { min-height: 100px; }
+	form input:focus, form select:focus, form textarea:focus { outline: 2px solid #c7614666; border-color: var(--coral); }
+	form br { display: none; }
+	form input[type=radio], form input[type=checkbox] { accent-color: var(--coral); }
+	form button { align-self: center; margin-top: 10px; cursor: pointer; font: 600 14px 'DM Sans', sans-serif; }
+	form button[type=submit] { background: var(--coral) !important; color: white !important; }
+	form button[type=reset] { background: var(--sage) !important; color: var(--green) !important; }
+
+	#contact { margin-top: 32px; background: var(--green) !important; }
+	#contact h2 { color: #f1d7bc !important; }
+	#contact p { color: #f3f1e8; }
+	#contact a { color: #f1d7bc !important; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+	footer { background: var(--green-dark) !important; }
+	footer p { margin: 0; color: #d3ddc8; font-size: 13px; }
+
+	@media (max-width: 700px) {
+		h2 { font-size: 29px; }
+		header h1 { font-size: 27px !important; }
+		#home { grid-template-columns: 1fr; gap: 24px; padding: 36px 18px 48px !important; }
+		#home img { height: 280px !important; }
+		#home h2 { font-size: 36px; }
+		#about { margin: 0 16px !important; padding: 30px 24px !important; }
+		#about ul { grid-template-columns: 1fr; }
+		#offers { grid-template-columns: 1fr; padding: 28px 18px !important; }
+		#offers h2 { margin-bottom: 4px; }
+		#menu { padding: 30px 18px !important; }
+		#menu > div > div { max-width: 420px; }
+		body > section:not(#home):not(#about):not(#offers):not(#menu):not(#billing):not(#contact) { padding: 24px 18px !important; overflow-x: auto; }
+		#billing { margin: 16px !important; padding: 28px 20px !important; overflow-x: auto; }
+		form { grid-template-columns: 1fr; padding: 22px !important; }
+		form button { justify-self: start; }
+		#contact { padding: 28px 18px !important; }
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+	}
+</style>
+</head>
+
+<body style="margin:0; font-family:Arial; background:#EAF3FC; color:#243B53;">
+
+<!-- HEADER -->
+<header style="background:#12345A; color:white; padding:20px; text-align:center;">
+
+<h1 style="font-size:40px; letter-spacing:3px;">MEVI SMART CAFE</h1>
+<p style="color:#BBD9F5;">Fresh Flavours. Friendly Prices.</p>
+
+<nav style="margin-top:20px;">
+<a href="#home" style="color:white; margin:10px;">Home</a>
+<a href="#about" style="color:white; margin:10px;">About</a>
+<a href="#menu" style="color:white; margin:10px;">Menu</a>
+<a href="#offers" style="color:white; margin:10px;">Offers</a>
+<a href="#billing" style="color:white; margin:10px;">Billing</a>
+<a href="#contact" style="color:white; margin:10px;">Contact</a>
+</nav>
+</header>
+
+<!-- HOME BANNER -->
+<section id="home" style="text-align:center; padding:30px;">
+
+<img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1400"
+alt="Beautiful Cafe Banner"
+style="width:95%; height:350px; object-fit:cover; border-radius:15px;">
+
+<div class="hero-copy">
+<p class="hero-kicker">A NEIGHBORHOOD CAFE IN BENGALURU</p>
+<h2 style="color:#174A7E; font-size:30px;">
+Welcome to your new favorite corner.
+</h2>
+
+<p>Enjoy delicious food, refreshing drinks and amazing desserts.</p>
+
+<p>Good Food. Good Mood. Great Memories!</p>
+
+<a href="#menu" style="background:#2876B9; color:white;
+padding:14px 25px; text-decoration:none; border-radius:8px;">
+Explore Our Menu
+</a>
+</div>
+
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="background:#D8E9F8; padding:30px; margin:20px; border-radius:12px;">
+
+<h2 style="text-align:center; color:#12345A;">About Our Cafe</h2>
+
+<h3>Who We Are</h3>
+
+<p>Mevi Smart Cafe is a fictional cafe created for an HTML and inline CSS practice project. We bring together delicious food, refreshing drinks and a comfortable atmosphere.</p>
+
+<h3>Why Customers Love Us</h3>
+
+<ul>
+<li>Freshly prepared food</li>
+<li>Affordable prices</li>
+<li>Friendly service</li>
+<li>Clean environment</li>
+<li>Delicious food and drinks</li>
+</ul>
+
+</section>
+
+<!-- OFFERS -->
+<section id="offers" style="padding:30px; text-align:center;">
+
+<h2 style="color:#12345A;">Today's Special Offers</h2>
+
+<div style="background:#D8E9F8; padding:15px; margin:15px; border-radius:10px;">
+<h3 style="color:#174A7E;">Combo 1</h3>
+Veg Burger + Cold Coffee — ₹190
+</div>
+
+<div style="background:#D8E9F8; padding:15px; margin:15px; border-radius:10px;">
+<h3 style="color:#174A7E;">Combo 2</h3>
+Cheese Sandwich + Orange Juice — ₹170
+</div>
+
+<div style="background:#D8E9F8; padding:15px; margin:15px; border-radius:10px;">
+<h3 style="color:#174A7E;">Combo 3</h3>
+Veg Pizza + Chocolate Cupcake — ₹250
+</div>
+
+</section>
+
+<!-- MENU -->
+<section id="menu" style="padding:30px;">
+
+<h2 style="text-align:center; color:#12345A;">Our Delicious Menu</h2>
+
+<div style="display:flex; flex-wrap:wrap; justify-content:center; gap:20px;">
+
+<!-- BURGER -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Veg Burger">
+<h3 style="color:#174A7E;">Veg Burger | ₹120</h3>
+<p>Crispy burger with fresh vegetables and sauce.</p>
+</div>
+
+<!-- SANDWICH -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Cheese Sandwich">
+<h3 style="color:#174A7E;">Cheese Sandwich | ₹100</h3>
+<p>Toasted bread with melted cheese and vegetables.</p>
+</div>
+
+<!-- PIZZA -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Veg Pizza">
+<h3 style="color:#174A7E;">Veg Pizza | ₹180</h3>
+<p>Delicious pizza topped with cheese and vegetables.</p>
+</div>
+
+<!-- COFFEE -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Cold Coffee">
+<h3 style="color:#174A7E;">Cold Coffee | ₹90</h3>
+<p>Refreshing creamy chilled coffee.</p>
+</div>
+
+<!-- JUICE -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Orange Juice">
+<h3 style="color:#174A7E;">Orange Juice | ₹80</h3>
+<p>Fresh and refreshing orange juice.</p>
+</div>
+
+<!-- CUPCAKE -->
+<div style="background:white; width:260px; padding:15px; border-radius:12px; text-align:center; box-shadow:0 3px 10px #b9cde0;">
+<img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=500"
+style="width:100%; height:180px; object-fit:cover; border-radius:10px;" alt="Chocolate Cupcake">
+<h3 style="color:#174A7E;">Chocolate Cupcake | ₹70</h3>
+<p>Soft chocolate cupcake with creamy frosting.</p>
+</div>
+
+</div>
+</section>
+
+<!-- PRICE TABLE -->
+<section style="padding:30px;">
+
+<h2 style="text-align:center; color:#12345A;">Full Menu Price List</h2>
+
+<table border="1" style="width:100%; border-collapse:collapse; background:white; text-align:center;">
+
+<tr style="background:#12345A; color:white;">
+<th style="padding:12px;">Code</th>
+<th>Item Name</th>
+<th>Category</th>
+<th>Price</th>
+</tr>
+
+<tr><td>F01</td><td>Veg Burger</td><td>Snack</td><td>₹120</td></tr>
+<tr><td>F02</td><td>Cheese Sandwich</td><td>Snack</td><td>₹100</td></tr>
+<tr><td>F03</td><td>Veg Pizza</td><td>Snack</td><td>₹180</td></tr>
+<tr><td>D01</td><td>Cold Coffee</td><td>Drink</td><td>₹90</td></tr>
+<tr><td>D02</td><td>Orange Juice</td><td>Drink</td><td>₹80</td></tr>
+<tr><td>S01</td><td>Chocolate Cupcake</td><td>Dessert</td><td>₹70</td></tr>
+
+</table>
+</section>
+
+<!-- BILLING -->
+<section id="billing" style="padding:30px; background:#D8E9F8; margin:20px; border-radius:12px;">
+
+<h2 style="text-align:center; color:#12345A;">MEVI SMART CAFE - CUSTOMER INVOICE</h2>
+
+<p><b>Invoice Number:</b> MSC-1001</p>
+<p><b>Customer Name:</b> Ananya Rao</p>
+<p><b>Order Type:</b> Takeaway</p>
+<p><b>Order Date:</b> 04 November 2026</p>
+
+<table border="1" style="width:100%; border-collapse:collapse; background:white; text-align:center;">
+
+<tr style="background:#12345A; color:white;">
+<th style="padding:10px;">Item</th>
+<th>Qty</th>
+<th>Unit Price</th>
+<th>Amount</th>
+</tr>
+
+<tr><td>Veg Burger</td><td>2</td><td>₹120</td><td>₹240</td></tr>
+<tr><td>Cheese Sandwich</td><td>1</td><td>₹100</td><td>₹100</td></tr>
+<tr><td>Cold Coffee</td><td>2</td><td>₹90</td><td>₹180</td></tr>
+
+</table>
+
+<h3 style="text-align:right;">Subtotal: ₹520</h3>
+<h3 style="text-align:right;">Sample Tax (5%): ₹26</h3>
+<h2 style="text-align:right; color:#174A7E;">Grand Total: ₹546</h2>
+
+<p style="text-align:center;">Thank you for visiting Mevi Smart Cafe!</p>
+
+</section>
+
+<!-- ORDER FORM -->
+<section style="padding:30px;">
+
+<h2 style="text-align:center; color:#12345A;">Place Your Order</h2>
+
+<form style="background:#D8E9F8; padding:25px; border-radius:12px;">
+
+<label>Customer Full Name:</label><br>
+<input type="text" required style="width:95%; padding:10px; margin:10px 0;"><br>
+
+<label>Mobile Number:</label><br>
+<input type="tel" required style="width:95%; padding:10px; margin:10px 0;"><br>
+
+<label>Email Address:</label><br>
+<input type="email" style="width:95%; padding:10px; margin:10px 0;"><br>
+
+<label>Choose Item:</label><br>
+<select style="width:98%; padding:10px; margin:10px 0;">
+<option>Veg Burger</option>
+<option>Cheese Sandwich</option>
+<option>Veg Pizza</option>
+<option>Cold Coffee</option>
+<option>Orange Juice</option>
+<option>Chocolate Cupcake</option>
+</select><br>
+
+<label>Quantity:</label><br>
+<input type="number" min="1" style="width:95%; padding:10px; margin:10px 0;"><br>
+
+<label>Order Type:</label><br>
+<input type="radio" name="order"> Dine In
+<input type="radio" name="order"> Takeaway
+<br><br>
+
+<label>Preferred Date:</label><br>
+<input type="date" style="padding:10px; margin:10px 0;"><br>
+
+<label>Add Extra Cheese?</label><br>
+<input type="checkbox"> Yes
+<br><br>
+
+<label>Special Instructions:</label><br>
+<textarea rows="4" style="width:95%; padding:10px; margin:10px 0;"></textarea>
+<br>
+
+<button type="submit" style="background:#12345A; color:white; padding:12px 25px; border:none; border-radius:6px;">
+Place Order
+</button>
+
+<button type="reset" style="background:#8AB6DD; color:#12345A; padding:12px 25px; border:none; border-radius:6px;">
+Clear Form
+</button>
+
+</form>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:#12345A; color:white; padding:30px; text-align:center;">
+
+<h2 style="color:#BBD9F5;">Contact Us</h2>
+
+<p>Address: 123 Learning Street, Bengaluru, Karnataka</p>
+<p>Hours: Monday to Saturday, 9:00 AM to 8:00 PM</p>
+<p>Email: hello@example.com</p>
+
+<p>Follow us:
+<a href="#" style="color:#BBD9F5;">Instagram</a> |
+<a href="#" style="color:#BBD9F5;">Facebook</a> |
+<a href="#" style="color:#BBD9F5;">YouTube</a>
+</p>
+
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0B223D; color:white; padding:15px; text-align:center;">
+<p>© 2026 Mevi Smart Cafe. Created for HTML Learning at Mevi Technologies.</p>
+</footer>
+
+</body>
+</html>
